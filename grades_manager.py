@@ -21,10 +21,28 @@ def load_courses_from_file(grades_file_path: Path) -> list[Course]:
 
 
 def print_courses_by_configuration(courses: list[Course], config: Configuration) -> None:
-    print(f'{"Name":<{config.name_length}}' f'{"Grade":<{config.grade_length}}' f'{"Points":<{config.points_length}}')
-    for course in courses:
-        print(
-            f'{course.name:<{config.name_length}} '
-            f'{course.grade:>{config.grade_length}} '
-            f'{course.points:>{config.points_length}}'
-        )
+    name_title = 'Name'
+    grade_title = 'Grade'
+    points_title = 'Points'
+
+    name_alignment = max(config.name_length, len(name_title))
+    grade_alignment = max(config.grade_length, len(grade_title))
+    points_alignment = max(config.points_length, len(points_title))
+
+    print(f'{name_title:<{name_alignment}}', end=' ')
+    print(f'{grade_title:<{grade_alignment}}', end=' ')
+    print(f'{points_title:<{points_alignment}}', end=' ')
+    print()
+
+    print(f'{"‾" * len(name_title):<{name_alignment}}', end=' ')
+    print(f'{"‾" * len(grade_title):<{grade_alignment}}', end=' ')
+    print(f'{"‾" * len(points_title):<{points_alignment}}', end=' ')
+    print()
+
+    for course in sorted(courses, key=lambda course: course.name):
+        print(f'{course.name:<{name_alignment}}', end=' ')
+        print(f'{course.grade:<{grade_alignment}}', end=' ')
+        print(f'{course.points:<{points_alignment}}', end=' ')
+        print()
+
+    print()
