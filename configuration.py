@@ -25,7 +25,7 @@ class Configuration:
         return d
 
 
-def create_default_configuration() -> Configuration:
+def create_default_configuration(create_config_file: bool = False) -> Configuration:
     config_filename = generate_configuration_filename()
     config_path = Path(config_filename)
 
@@ -35,7 +35,10 @@ def create_default_configuration() -> Configuration:
         grade_length=3,
         points_length=4,
     )
-    save_configuration(config_obj, config_path)
+
+    if create_config_file:
+        save_configuration(config_obj, config_path)
+
     return config_obj
 
 
