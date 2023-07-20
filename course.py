@@ -13,4 +13,8 @@ class Course:
         return cls(**course_dict)
 
     def __str__(self) -> str:
-        return f'Name: {self.name}, Grade: {self.grade}, Points: {self.points}'
+        s = ''
+        for field in self.__dataclass_fields__.values():
+            field_name = field.name.replace('_', ' ').title()
+            s += f'{field_name}: {getattr(self, field.name)}, '
+        return s.rstrip(', ')

@@ -24,6 +24,13 @@ class Configuration:
 
         return d
 
+    def __str__(self) -> str:
+        s = ''
+        for field in self.__dataclass_fields__.values():
+            field_name = field.name.replace('_', ' ').title()
+            s += f'{field_name}: {getattr(self, field.name)}, '
+        return s.rstrip(', ')
+
 
 def create_default_configuration(create_config_file: bool = False) -> Configuration:
     config_filename = generate_configuration_filename()
