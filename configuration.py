@@ -6,6 +6,14 @@ from pathlib import Path
 from typing import Optional
 from uuid import uuid4
 
+from constants import (
+    DEFAULT_COURSES_FILE_PATH,
+    DEFAULT_NAME_LENGTH,
+    DEFAULT_GRADE_LENGTH,
+    DEFAULT_POINTS_LENGTH,
+    CONFIGURATION_FILE_TEMPLATE,
+)
+
 
 @dataclass
 class Configuration:
@@ -33,17 +41,16 @@ class Configuration:
 
 
 def create_default_configuration(create_config_file: bool = False) -> Configuration:
-    config_filename = generate_configuration_filename()
-    config_path = Path(config_filename)
-
     config_obj = Configuration(
-        courses_file_path=Path('courses.json'),
-        name_length=30,
-        grade_length=3,
-        points_length=4,
+        courses_file_path=Path(DEFAULT_COURSES_FILE_PATH),
+        name_length=DEFAULT_NAME_LENGTH,
+        grade_length=DEFAULT_GRADE_LENGTH,
+        points_length=DEFAULT_POINTS_LENGTH,
     )
 
     if create_config_file:
+        config_filename = generate_configuration_filename()
+        config_path = Path(config_filename)
         save_configuration(config_obj, config_path)
 
     return config_obj
@@ -55,7 +62,7 @@ def save_configuration(config: Configuration, config_path: Path) -> None:
 
 
 def generate_configuration_filename() -> str:
-    return f'courses_manager_config_{uuid4().hex}.json'
+    return CONFIGURATION_FILE_TEMPLATE.format(uuid4().hex)
 
 
 def search_for_alternative_config_file() -> Optional[Path]:
