@@ -9,7 +9,7 @@ from uuid import uuid4
 
 @dataclass
 class Configuration:
-    grades_file_path: Path
+    courses_file_path: Path
     name_length: int
     grade_length: int
     points_length: int
@@ -20,7 +20,7 @@ class Configuration:
 
     def to_dict(self) -> dict:
         d = asdict(self)
-        d['grades_file_path'] = str(d['grades_file_path'].absolute())
+        d['courses_file_path'] = str(d['courses_file_path'].absolute())
 
         return d
 
@@ -30,7 +30,7 @@ def create_default_configuration() -> Configuration:
     config_path = Path(config_filename)
 
     config_obj = Configuration(
-        grades_file_path=Path('grades.json'),
+        courses_file_path=Path('courses.json'),
         name_length=30,
         grade_length=3,
         points_length=4,
@@ -45,11 +45,11 @@ def save_configuration(config: Configuration, config_path: Path) -> None:
 
 
 def generate_configuration_filename() -> str:
-    return f'grades_manager_config_{uuid4().hex}.json'
+    return f'courses_manager_config_{uuid4().hex}.json'
 
 
 def search_for_alternative_config_file() -> Optional[Path]:
-    curr_dir_config_file = next(Path().glob('grades_manager_config_*.json'), None)
+    curr_dir_config_file = next(Path().glob('courses_manager_config_*.json'), None)
     if curr_dir_config_file:
         return curr_dir_config_file
 
