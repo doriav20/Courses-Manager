@@ -48,8 +48,18 @@ def generate_configuration_filename() -> str:
     return f'grades_manager_config_{uuid4().hex}.json'
 
 
+def search_for_alternative_config_file() -> Optional[Path]:
+    curr_dir_config_file = next(Path().glob('grades_manager_config_*.json'), None)
+    if curr_dir_config_file:
+        return curr_dir_config_file
+
+
 def load_configuration(configuration_path: Optional[Path]) -> Configuration:
     if configuration_path is None or not configuration_path.is_file():
+        alt_config_file = search_for_alternative_config_file()
+        if alt_config_file:
+            return load_configuration(alt_config_file)
+
         return create_default_configuration()
 
     with open(configuration_path) as config_file:
