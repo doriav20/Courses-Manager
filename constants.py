@@ -1,3 +1,5 @@
+# constants.py
+
 DEFAULT_COURSES_FILE_PATH = 'courses.json'
 
 DEFAULT_NAME_LENGTH = 30

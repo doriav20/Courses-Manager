@@ -1,3 +1,5 @@
+# main.py
+
 from arguments_handler import get_configuration_path
 from configuration import load_configuration
 from courses_display import display_courses

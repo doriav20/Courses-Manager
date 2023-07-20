@@ -1,3 +1,5 @@
+# courses_display.py
+
 from configuration import Configuration
 from course import Course
 from courses_manager import get_gpa, get_total_points
