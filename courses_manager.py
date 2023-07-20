@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-from configuration import Configuration
 from course import Course
 
 
