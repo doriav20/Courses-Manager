@@ -85,3 +85,18 @@ The configuration file is a JSON file with the following structure:
 - `points_length` (optional): The maximum length of the points column in the table. By default, it is set to `4`.
 
 Modify these values according to your requirements before running the `main.py` script.
+
+## Compiling the Application
+
+To compile the course manager into an executable file, you can use the `compile_app.py` script provided. This script
+uses PyInstaller to create a standalone executable.
+
+1. Run the `compile_app.py` script:
+
+   ```
+   python compile_app.py
+   ```
+
+   This script will use PyInstaller to create a single executable file named `courses_manager.exe`.
+
+2. The compiled executable file will be generated in the root of the project.
