@@ -18,13 +18,19 @@ class Configuration:
     def from_dict(cls, config_dict: dict) -> Configuration:
         return cls(**config_dict)
 
+    def to_dict(self) -> dict:
+        d = asdict(self)
+        d['grades_file_path'] = str(d['grades_file_path'].absolute())
+
+        return d
+
 
 def create_default_configuration() -> Configuration:
     config_filename = generate_configuration_filename()
     config_path = Path(config_filename)
 
     config_obj = Configuration(
-        grades_file_path=config_path,
+        grades_file_path=Path('grades.json'),
         name_length=30,
         grade_length=3,
         points_length=4,
@@ -35,7 +41,7 @@ def create_default_configuration() -> Configuration:
 
 def save_configuration(config: Configuration, config_path: Path) -> None:
     with open(config_path, mode='w') as config_file:
-        json.dump(asdict(config), config_file, sort_keys=True)
+        json.dump(config.to_dict(), config_file, sort_keys=True)
 
 
 def generate_configuration_filename() -> str:
