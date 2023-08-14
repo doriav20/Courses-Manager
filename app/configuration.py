@@ -10,11 +10,11 @@ from uuid import uuid4
 
 from constants import (
     DEFAULT_COURSES_FILE_PATH,
-    DEFAULT_NAME_COLUMN_LENGTH,
-    DEFAULT_YEAR_COLUMN_LENGTH,
-    DEFAULT_SEMESTER_COLUMN_LENGTH,
-    DEFAULT_GRADE_COLUMN_LENGTH,
-    DEFAULT_POINTS_COLUMN_LENGTH,
+    DEFAULT_NAME_COLUMN_WIDTH,
+    DEFAULT_YEAR_COLUMN_WIDTH,
+    DEFAULT_SEMESTER_COLUMN_WIDTH,
+    DEFAULT_GRADE_COLUMN_WIDTH,
+    DEFAULT_POINTS_COLUMN_WIDTH,
     CONFIGURATION_FILE_TEMPLATE,
 )
 
@@ -22,11 +22,11 @@ from constants import (
 @dataclass
 class Configuration:
     courses_file_path: Path
-    name_length: int = DEFAULT_NAME_COLUMN_LENGTH
-    year_length: int = DEFAULT_YEAR_COLUMN_LENGTH
-    semester_length: int = DEFAULT_SEMESTER_COLUMN_LENGTH
-    grade_length: int = DEFAULT_GRADE_COLUMN_LENGTH
-    points_length: int = DEFAULT_POINTS_COLUMN_LENGTH
+    name_column_width: int = DEFAULT_NAME_COLUMN_WIDTH
+    year_column_width: int = DEFAULT_YEAR_COLUMN_WIDTH
+    semester_column_width: int = DEFAULT_SEMESTER_COLUMN_WIDTH
+    grade_column_width: int = DEFAULT_GRADE_COLUMN_WIDTH
+    points_column_width: int = DEFAULT_POINTS_COLUMN_WIDTH
 
     @classmethod
     def from_dict(cls, config_dict: dict) -> Configuration:
@@ -89,10 +89,10 @@ def load_configuration(configuration_path: Optional[Path]) -> Configuration:
 
     config_dict = dict(parser['DEFAULT'])
     config_dict['courses_file_path'] = Path(config_dict['courses_file_path'])
-    config_dict['name_length'] = int(config_dict['name_length'])
-    config_dict['year_length'] = int(config_dict['year_length'])
-    config_dict['semester_length'] = int(config_dict['semester_length'])
-    config_dict['grade_length'] = int(config_dict['grade_length'])
-    config_dict['points_length'] = int(config_dict['points_length'])
+    config_dict['name_column_width'] = int(config_dict['name_column_width'])
+    config_dict['year_column_width'] = int(config_dict['year_column_width'])
+    config_dict['semester_column_width'] = int(config_dict['semester_column_width'])
+    config_dict['grade_column_width'] = int(config_dict['grade_column_width'])
+    config_dict['points_column_width'] = int(config_dict['points_column_width'])
 
     return Configuration.from_dict(config_dict)

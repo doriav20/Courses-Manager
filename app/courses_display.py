@@ -5,8 +5,8 @@ from course import Course
 from courses_manager import get_gpa, get_total_points
 
 
-def get_alignment(title: str, length: int) -> int:
-    return max(length, len(title))
+def get_alignment(title: str, width: int) -> int:
+    return max(width, len(title))
 
 
 def print_headers(
@@ -58,11 +58,11 @@ def print_gpa_and_total_points(courses: list[Course], config: Configuration) -> 
 
 
 def display_courses(courses: list[Course], config: Configuration) -> None:
-    name_alignment = get_alignment('Name', config.name_length)
-    year_alignment = get_alignment('Year', config.year_length)
-    semester_alignment = get_alignment('Semester', config.semester_length)
-    grade_alignment = get_alignment('Grade', config.grade_length)
-    points_alignment = get_alignment('Points', config.points_length)
+    name_alignment = get_alignment('Name', config.name_column_width)
+    year_alignment = get_alignment('Year', config.year_column_width)
+    semester_alignment = get_alignment('Semester', config.semester_column_width)
+    grade_alignment = get_alignment('Grade', config.grade_column_width)
+    points_alignment = get_alignment('Points', config.points_column_width)
 
     print_headers(name_alignment, year_alignment, semester_alignment, grade_alignment, points_alignment)
 
