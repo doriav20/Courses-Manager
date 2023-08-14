@@ -23,8 +23,8 @@ def print_headers(name_alignment: int, grade_alignment: int, points_alignment: i
 
 def print_courses(courses: list[Course], name_alignment: int, grade_alignment: int, points_alignment: int) -> None:
     filtered_courses = [course for course in courses if course.grade > 0]
-    courses_sorted_by_name = sorted(filtered_courses, key=lambda course: course.name)
-    for course in courses_sorted_by_name:
+    sorted_courses = sorted(filtered_courses)
+    for course in sorted_courses:
         print(f'{course.name:<{name_alignment}}', end=' ')
         print(f'{course.grade:<{grade_alignment}}', end=' ')
         print(f'{course.points:<{points_alignment}}', end=' ')

@@ -20,3 +20,9 @@ class Course:
             field_name = field.name.replace('_', ' ').title()
             s += f'{field_name}: {getattr(self, field.name)}, '
         return s.rstrip(', ')
+
+    def __lt__(self, other: Course) -> bool:
+        return self.name < other.name
+
+    def __eq__(self, other: Course) -> bool:
+        return self.name == other.name
