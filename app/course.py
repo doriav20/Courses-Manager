@@ -7,10 +7,10 @@ from dataclasses import dataclass
 @dataclass
 class Course:
     name: str = 'Unknown'
-    grade: int = 0
-    points: float = 0
     year: int = 0
     semester: str = 'Unknown'
+    grade: int = 0
+    points: float = 0
 
     @classmethod
     def from_dict(cls, course_dict: dict) -> Course:
