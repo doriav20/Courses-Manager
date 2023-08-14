@@ -14,7 +14,7 @@ def get_configuration_path_from_arguments() -> Optional[Path]:
     return None
 
 
-# Get configuration path by selecting file (ends with json) and start from current dir from file explorer
+# Get configuration path by selecting file (ends with ini) and start from current dir from file explorer
 def get_configuration_path_from_file_explorer() -> Optional[Path]:
     from tkinter import Tk
     from tkinter.filedialog import askopenfilename
@@ -22,7 +22,7 @@ def get_configuration_path_from_file_explorer() -> Optional[Path]:
     Tk().withdraw()
     filename = askopenfilename(
         title="Select configuration file",
-        filetypes=[("Configuration JSON files", "*.json")],
+        filetypes=[("Configuration ini files", "*.ini")],
         initialdir=Path.cwd(),
     )
 

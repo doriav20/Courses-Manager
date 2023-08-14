@@ -6,4 +6,4 @@ DEFAULT_NAME_LENGTH = 30
 DEFAULT_GRADE_LENGTH = 3
 DEFAULT_POINTS_LENGTH = 4
 
-CONFIGURATION_FILE_TEMPLATE = 'courses_manager_config_{uuid4_hex}.json'
+CONFIGURATION_FILE_TEMPLATE = 'courses_manager_config_{uuid4_hex}.ini'

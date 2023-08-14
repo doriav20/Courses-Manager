@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import json
+from configparser import ConfigParser
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Optional
@@ -59,8 +59,10 @@ def create_default_configuration(create_config_file: bool = False) -> Configurat
 
 
 def save_configuration(config: Configuration, config_path: Path) -> None:
+    parser = ConfigParser()
+    parser['DEFAULT'] = config.to_dict()
     with open(config_path, mode='w') as config_file:
-        json.dump(config.to_dict(), config_file, sort_keys=True)
+        parser.write(config_file)
 
 
 def generate_configuration_filename() -> str:
@@ -68,7 +70,7 @@ def generate_configuration_filename() -> str:
 
 
 def search_for_alternative_config_file() -> Optional[Path]:
-    curr_dir_config_file = next(Path().glob('courses_manager_config_*.json'), None)
+    curr_dir_config_file = next(Path().glob('courses_manager_config_*.ini'), None)
     if curr_dir_config_file:
         return curr_dir_config_file
 
@@ -81,6 +83,13 @@ def load_configuration(configuration_path: Optional[Path]) -> Configuration:
 
         return create_default_configuration()
 
-    with open(configuration_path) as config_file:
-        config_dict = json.load(config_file)
-        return Configuration.from_dict(config_dict)
+    parser = ConfigParser()
+    parser.read(configuration_path)
+
+    config_dict = dict(parser['DEFAULT'])
+    config_dict['courses_file_path'] = Path(config_dict['courses_file_path'])
+    config_dict['name_length'] = int(config_dict['name_length'])
+    config_dict['grade_length'] = int(config_dict['grade_length'])
+    config_dict['points_length'] = int(config_dict['points_length'])
+
+    return Configuration.from_dict(config_dict)

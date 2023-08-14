@@ -67,7 +67,7 @@ The course manager provides some customization options through the configuration
 can be modified to suit your preferences. To create a configuration file, run the `main.py` script and choose the option
 to create a new configuration file.
 
-The configuration file is a JSON file with the following structure:
+The configuration file is an ini file with the following structure:
 
 ```json
 {
