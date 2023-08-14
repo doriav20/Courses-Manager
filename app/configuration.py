@@ -10,9 +10,9 @@ from uuid import uuid4
 
 from constants import (
     DEFAULT_COURSES_FILE_PATH,
-    DEFAULT_NAME_LENGTH,
-    DEFAULT_GRADE_LENGTH,
-    DEFAULT_POINTS_LENGTH,
+    DEFAULT_NAME_COLUMN_LENGTH,
+    DEFAULT_GRADE_COLUMN_LENGTH,
+    DEFAULT_POINTS_COLUMN_LENGTH,
     CONFIGURATION_FILE_TEMPLATE,
 )
 
@@ -45,9 +45,9 @@ class Configuration:
 def create_default_configuration(create_config_file: bool = False) -> Configuration:
     config_obj = Configuration(
         courses_file_path=Path(DEFAULT_COURSES_FILE_PATH),
-        name_length=DEFAULT_NAME_LENGTH,
-        grade_length=DEFAULT_GRADE_LENGTH,
-        points_length=DEFAULT_POINTS_LENGTH,
+        name_length=DEFAULT_NAME_COLUMN_LENGTH,
+        grade_length=DEFAULT_GRADE_COLUMN_LENGTH,
+        points_length=DEFAULT_POINTS_COLUMN_LENGTH,
     )
 
     if create_config_file:
