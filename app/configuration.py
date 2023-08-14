@@ -64,7 +64,7 @@ def save_configuration(config: Configuration, config_path: Path) -> None:
 
 
 def generate_configuration_filename() -> str:
-    return CONFIGURATION_FILE_TEMPLATE.format(uuid4().hex)
+    return CONFIGURATION_FILE_TEMPLATE.format(uuid4_hex=uuid4().hex)
 
 
 def search_for_alternative_config_file() -> Optional[Path]:
