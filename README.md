@@ -69,20 +69,23 @@ to create a new configuration file.
 
 The configuration file is an ini file with the following structure:
 
-```json
-{
-  "courses_file_path": "courses.json",
-  "name_length": 30,
-  "grade_length": 3,
-  "points_length": 4
-}
+```ini
+[DEFAULT]
+courses_file_path = courses.json
+name_column_width = 30
+year_column_width = 5
+semester_column_width = 8
+grade_column_width = 5
+points_column_width = 6
 ```
 
 - `courses_file_path` (optional): The path to the JSON file containing the course information. By default, it is set
   to `"courses.json"`.
-- `name_length` (optional): The maximum length of the course name column in the table. By default, it is set to `30`.
-- `grade_length` (optional): The maximum length of the grade column in the table. By default, it is set to `3`.
-- `points_length` (optional): The maximum length of the points column in the table. By default, it is set to `4`.
+- `name_column_width` (optional): The maximum length of the course name column in the table. By default, it is set to `30`.
+- `year_column_width` (optional): The maximum length of the year column in the table. By default, it is set to `5`.
+- `semester_column_width` (optional): The maximum length of the semester column in the table. By default, it is set to `8`.
+- `grade_column_width` (optional): The maximum length of the grade column in the table. By default, it is set to `5`.
+- `points_column_width` (optional): The maximum length of the points column in the table. By default, it is set to `6`.
 
 Modify these values according to your requirements before running the `main.py` script.
 
