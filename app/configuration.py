@@ -11,6 +11,8 @@ from uuid import uuid4
 from constants import (
     DEFAULT_COURSES_FILE_PATH,
     DEFAULT_NAME_COLUMN_LENGTH,
+    DEFAULT_YEAR_COLUMN_LENGTH,
+    DEFAULT_SEMESTER_COLUMN_LENGTH,
     DEFAULT_GRADE_COLUMN_LENGTH,
     DEFAULT_POINTS_COLUMN_LENGTH,
     CONFIGURATION_FILE_TEMPLATE,
@@ -21,6 +23,8 @@ from constants import (
 class Configuration:
     courses_file_path: Path
     name_length: int = DEFAULT_NAME_COLUMN_LENGTH
+    year_length: int = DEFAULT_YEAR_COLUMN_LENGTH
+    semester_length: int = DEFAULT_SEMESTER_COLUMN_LENGTH
     grade_length: int = DEFAULT_GRADE_COLUMN_LENGTH
     points_length: int = DEFAULT_POINTS_COLUMN_LENGTH
 
@@ -86,6 +90,8 @@ def load_configuration(configuration_path: Optional[Path]) -> Configuration:
     config_dict = dict(parser['DEFAULT'])
     config_dict['courses_file_path'] = Path(config_dict['courses_file_path'])
     config_dict['name_length'] = int(config_dict['name_length'])
+    config_dict['year_length'] = int(config_dict['year_length'])
+    config_dict['semester_length'] = int(config_dict['semester_length'])
     config_dict['grade_length'] = int(config_dict['grade_length'])
     config_dict['points_length'] = int(config_dict['points_length'])
 

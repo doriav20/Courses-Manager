@@ -9,23 +9,38 @@ def get_alignment(title: str, length: int) -> int:
     return max(length, len(title))
 
 
-def print_headers(name_alignment: int, grade_alignment: int, points_alignment: int) -> None:
+def print_headers(
+    name_alignment: int, year_alignment: int, semester_alignment: int, grade_alignment: int, points_alignment: int
+) -> None:
     print(f'{"Name":<{name_alignment}}', end=' ')
+    print(f'{"Year":<{year_alignment}}', end=' ')
+    print(f'{"Semester":<{semester_alignment}}', end=' ')
     print(f'{"Grade":<{grade_alignment}}', end=' ')
     print(f'{"Points":<{points_alignment}}', end=' ')
     print()
 
     print(f'{"‾" * len("Name"):<{name_alignment}}', end=' ')
+    print(f'{"‾" * len("Year"):<{year_alignment}}', end=' ')
+    print(f'{"‾" * len("Semester"):<{semester_alignment}}', end=' ')
     print(f'{"‾" * len("Grade"):<{grade_alignment}}', end=' ')
     print(f'{"‾" * len("Points"):<{points_alignment}}', end=' ')
     print()
 
 
-def print_courses(courses: list[Course], name_alignment: int, grade_alignment: int, points_alignment: int) -> None:
+def print_courses(
+    courses: list[Course],
+    name_alignment: int,
+    year_alignment: int,
+    semester_alignment: int,
+    grade_alignment: int,
+    points_alignment: int,
+) -> None:
     filtered_courses = [course for course in courses if course.grade > 0]
     sorted_courses = sorted(filtered_courses)
     for course in sorted_courses:
         print(f'{course.name:<{name_alignment}}', end=' ')
+        print(f'{course.year:<{year_alignment}}', end=' ')
+        print(f'{course.semester:<{semester_alignment}}', end=' ')
         print(f'{course.grade:<{grade_alignment}}', end=' ')
         print(f'{course.points:<{points_alignment}}', end=' ')
         print()
@@ -44,11 +59,13 @@ def print_gpa_and_total_points(courses: list[Course], config: Configuration) -> 
 
 def display_courses(courses: list[Course], config: Configuration) -> None:
     name_alignment = get_alignment('Name', config.name_length)
+    year_alignment = get_alignment('Year', config.year_length)
+    semester_alignment = get_alignment('Semester', config.semester_length)
     grade_alignment = get_alignment('Grade', config.grade_length)
     points_alignment = get_alignment('Points', config.points_length)
 
-    print_headers(name_alignment, grade_alignment, points_alignment)
+    print_headers(name_alignment, year_alignment, semester_alignment, grade_alignment, points_alignment)
 
-    print_courses(courses, name_alignment, grade_alignment, points_alignment)
+    print_courses(courses, name_alignment, year_alignment, semester_alignment, grade_alignment, points_alignment)
 
     print_gpa_and_total_points(courses, config)
