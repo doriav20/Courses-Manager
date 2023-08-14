@@ -20,9 +20,9 @@ from constants import (
 @dataclass
 class Configuration:
     courses_file_path: Path
-    name_length: int
-    grade_length: int
-    points_length: int
+    name_length: int = DEFAULT_NAME_COLUMN_LENGTH
+    grade_length: int = DEFAULT_GRADE_COLUMN_LENGTH
+    points_length: int = DEFAULT_POINTS_COLUMN_LENGTH
 
     @classmethod
     def from_dict(cls, config_dict: dict) -> Configuration:
